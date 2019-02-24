@@ -1,0 +1,10 @@
+Status Report 24/2/19
+
+Syntax of For is all OK, no type checking has been done on the expressions to ensure they are numbers yet this will be addressed in the second part of the assignment
+
+Syntax of Switch is good for now however may have to addressed to better facilitate the type checking of boolean or numerical cases.
+If necessary switch statements can be broken down into separate versions for booleans and numbers which can then come under a simple switch statement.
+This is not ideal however will work if no better option presents.
+
+Tests are uncertain as to whether they are working due to large error regarding version of the ANTLR jar in use.
+If this is only a warning then it seems they execute correctly.
