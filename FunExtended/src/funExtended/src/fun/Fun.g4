@@ -73,9 +73,9 @@ com
 		  seq_com DOT             # while
 		  
 //EXTENSION
-  	|	FOR ID ASSN expr TO expr COLON
+  	|	FOR ID ASSN e1=expr TO e2=expr COLON
 		 seq_com DOT 				#forloop
-	|	SWITCH e1 = expr COLON
+	|	SWITCH expr COLON
 			(case_stmt)*
 			default_case
 			DOT						#switch
@@ -88,14 +88,23 @@ default_case
 	;
 	
 case_stmt 
-	: CASE (NUM | FALSE | TRUE | range) COLON 
+	: CASE v1=guard COLON 
 		seq_com						#case_statement
 	;
-	//type checking will have to be done on this to ensure it the same as the expr e1
 	
 range
-	: NUM DOT DOT NUM
+	: n1=NUM DOT DOT n2=NUM
 	;
+	
+	guard
+	:	FALSE			# falseg   
+	|	TRUE			# trueg
+	|	NUM			# numg
+	|	NUM DOTS NUM		# rangeg
+	;
+
+	DOTS: '..';
+	
 //EXTENSION
 seq_com
 	:	com*                      # seq
